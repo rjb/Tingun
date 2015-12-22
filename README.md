@@ -4,11 +4,7 @@ Tingun downloads any one of your Mailgun mailing lists as a CSV file.
 
 # Requirements #
 
-mailgun-ruby
-
-```
-gem install mailgun-ruby
-```
+[mailgun-ruby](https://github.com/mailgun/mailgun-ruby)
 
 # Usage #
 
