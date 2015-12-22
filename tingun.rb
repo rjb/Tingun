@@ -29,7 +29,7 @@ end
 
 run do
   # Get recipient count
-  @recipient_count = @mailgun_client.get("/lists", {:limit => 100, :skip => 0}).to_h["items"].select {|h| h["address"] == @mailing_list_alias_address }.first["members_count"]
+  @recipient_count = @mailgun_client.get("/lists", { limit: 100, skip: 0 }).to_h["items"].select { |h| h["address"] == @mailing_list_alias_address }.first["members_count"]
   
   # Number of pages recipients are spread across (Mailgun limts requests to 100 records)
   # Pages may not be the best term. "number_of_requests" perhaps?
@@ -42,7 +42,7 @@ run do
     skip_count = page_num * 100
     
     # Get recipients from the current page
-    page_recipients = @mailgun_client.get("/lists/#{@mailing_list_alias_address}/members", { :limit => 100, :skip => skip_count })
+    page_recipients = @mailgun_client.get("/lists/#{@mailing_list_alias_address}/members", { limit: 100, skip: skip_count })
     @recipients += page_recipients.to_h["items"]
   end
   
