@@ -33,11 +33,11 @@ run do
   
   # Number of pages recipients are spread across (Mailgun limts requests to 100 records)
   # Pages may not be the best term. "number_of_requests" perhaps?
-  number_of_pages = (@recipient_count.to_f / 100)
-  number_of_pages = number_of_pages % 1 == 0 ? number_of_pages.floor - 1 : number_of_pages.floor
+  number_of_pages = @recipient_count.to_f / 100
+  number_of_pages = number_of_pages % 1 == 0 ? number_of_pages.floor : number_of_pages.floor + 1
   
   # Add recipients to @recipients (Loops through each page, plus 1 to include carry over)
-  number_of_pages.downto(0) do |page_num|
+  number_of_pages.downto(1) do |page_num|
     # Set skip count
     skip_count = page_num * 100
     
